@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
-  <a class="navbar-brand" routerLink="/">Apollo</a>
+  <a class="navbar-brand" routerLink="/">Apollus EHS</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -18,5 +18,22 @@
         <a class="nav-link" routerLink="/usuarios">Usuarios</a>
       </li>
     </ul>
+  </div>
+
+  <div layout-align="end center" a>
+    <div>        
+        <div>
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Configurações
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <button class="dropdown-item" type="button">Meu Perfil</button>
+              <button class="dropdown-item" type="button">Alterar Senha</button>              
+            </div>
+          </div>
+    </div>
+    <div layout-align="end center">        
+        <button type="button" class="btn btn-light"><span class="oi" data-glyph="account-logout">Logout</span></button>
+    </div>
   </div>
 </nav>
