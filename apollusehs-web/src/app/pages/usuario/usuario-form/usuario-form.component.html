@@ -1,0 +1,66 @@
+<app-bread-crumb
+  [items]="[{text: 'Usuários', link: '/usuarios'}, {text: pageTitle}]"
+></app-bread-crumb>
+
+<app-page-header
+  [page-title]="pageTitle"
+  button-text="<< Voltar"
+  button-link="/usuarios"
+  button-class="btn-light"
+></app-page-header>
+
+<form [formGroup]="resourceForm" (submit)="submitForm()">
+
+    <div class="card">
+        <div class="card-header">
+          Informações sobre o Usuário
+        </div>
+
+        <div class="card-body">
+          <div class="form-row">
+            <div class="form-group col-md-10">
+              <label for="nome">Nome</label>
+              <input type="text" class="form-control" id="nome" formControlName="nome">    
+            </div>
+    
+            <div class="form-group col-md-5">
+              <label for="login">Login</label>
+              <input type="text" class="form-control" id="login" formControlName="login">
+            </div>
+
+            <div class="form-group col-md-5">
+                <label for="login">Senha</label>
+                <input type="password" class="form-control" id="senha" formControlName="senha">
+            </div>
+
+            <div class="form-group col-md-5">
+                <label for="perfil">Perfil</label>                
+                <select name="perfil" id="perfil" formControlName="perfil" class="form-control">
+                    <option *ngFor="let perfil of perfils" [value]="perfil.id">{{ perfil.nome }}</option>
+                </select>
+        
+                <app-form-field-error [form-control]="resourceForm.get('perfil')"></app-form-field-error>
+            </div>
+
+            <div class="form-group col-md-5">
+                <label for="ativo">Ativo</label><br> 
+                <div class="btn-group">
+                    <label (click)="resourceForm.get('ativo').setValue(true)" [class.active]="resourceForm.get('ativo').value == true" class="btn btn-outline-info">
+                      Ativo
+                    </label>
+                    <label (click)="resourceForm.get('ativo').setValue(false)" [class.active]="resourceForm.get('ativo').value == false" class="btn btn-outline-info">
+                      Inativo
+                    </label> 
+                </div>         
+            </div>
+          </div>
+        </div>
+
+    </div>
+    <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
+    <button [disabled]="submittingForm || resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
+        Salvar
+    </button>
+
+</form>
