@@ -19,3 +19,16 @@ Execute a classe Startup.java para subir o serviço.
 
 Acesse o link abaixo e veja todos os serviços disponíveis.
 http://localhost:8080/swagger-ui.html
+
+
+# Apollusehs-web
+
+Pré-requisitos
+
+* Node.js
+* Angular-cli
+* Visual Studio Code
+
+Execução do projeto
+
+
