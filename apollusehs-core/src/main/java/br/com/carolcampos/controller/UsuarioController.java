@@ -20,7 +20,6 @@ import br.com.carolcampos.services.UsuarioServices;
 @RequestMapping("/usuario")
 public class UsuarioController {
 	
-
 	@Autowired
 	private UsuarioServices service;
 	
