@@ -48,5 +48,10 @@ public class UsuarioController {
 		service.delete(id);
 		return ResponseEntity.ok().build();
 	}	
+	
+	@PutMapping("/alterarSenha")
+	public Usuario alterarSenha(@RequestBody Usuario usuario) {
+		return service.alterarSenha(usuario);
+	}
 
 }

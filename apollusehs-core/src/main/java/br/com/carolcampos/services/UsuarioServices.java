@@ -46,5 +46,12 @@ public class UsuarioServices {
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 		repository.delete(entity);
 	}
+	
+	public Usuario alterarSenha(Usuario usuario) {
+		Usuario entity = repository.findById(usuario.getId())
+				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+		entity.setSenha(usuario.getSenha());
+		return repository.save(entity);
+	}
 
 }
