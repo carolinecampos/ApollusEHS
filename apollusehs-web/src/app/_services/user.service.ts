@@ -7,6 +7,8 @@ import { User } from '../_models';
 export class UserService {
     constructor(private http: HttpClient) { }
 
+    baseUrl: string = 'http://localhost:8080/usuario';
+
     getAll() {
         return this.http.get<User[]>(`/users`);
     }
@@ -16,7 +18,7 @@ export class UserService {
     }
 
     register(user: User) {
-        return this.http.post(`/users/register`, user);
+        return this.http.post(this.baseUrl, user);
     }
 
     update(user: User) {

@@ -15,9 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         private authenticationService: AuthenticationService,
         private userService: UserService
     ) {
-        this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-            console.log("chegou no home");
-            console.log(user);
+        this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {            
             this.currentUser = user;
         });
     }
