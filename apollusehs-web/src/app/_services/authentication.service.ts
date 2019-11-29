@@ -22,7 +22,13 @@ export class AuthenticationService {
 
     login(username: string, password: string) {
         let httpParams = new HttpParams().set('login', username).set("senha",  password);
-        return this.http.get(this.baseUrl, {params: httpParams});
+        return this.http.get(this.baseUrl, {params: httpParams}).pipe(map(user => {
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(<any>user);
+            }
+            return user;
+        }));
         /*return this.http.post<any>(`/users/authenticate`, { username, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
