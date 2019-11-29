@@ -18,6 +18,8 @@ export class UserService {
     }
 
     register(user: User) {
+        user.ativo=true;
+        user.perfil="USER";
         return this.http.post(this.baseUrl, user);
     }
 
