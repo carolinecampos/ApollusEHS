@@ -25,12 +25,12 @@ public class UsuarioServices {
 	
 	public Usuario findById(Long id) {
 		return repository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+				.orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado."));
 	}
 		
 	public Usuario update(Usuario usuario) {
 		Usuario entity = repository.findById(usuario.getId())
-				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+				.orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado."));
 		
 		entity.setNome(usuario.getNome());
 		entity.setLogin(usuario.getLogin());
@@ -43,13 +43,13 @@ public class UsuarioServices {
 	
 	public void delete(Long id) {
 		Usuario entity = repository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+				.orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado."));
 		repository.delete(entity);
 	}
 	
 	public Usuario alterarSenha(Usuario usuario) {
 		Usuario entity = repository.findById(usuario.getId())
-				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+				.orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado."));
 		entity.setSenha(usuario.getSenha());
 		return repository.save(entity);
 	}
