@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/_services';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { User } from '../shared/user';
 
 @Component({
   selector: 'app-user-form',
@@ -33,16 +34,27 @@ export class UserFormComponent implements OnInit {
     });
   }
 
+  protected editForm(user:User) {
+    this.userForm = this.formBuilder.group({
+      id: [user.id],
+      nome: [user.nome, [Validators.required, Validators.minLength(2)]],
+      login: [user.login, [Validators.required]],
+      senha: [user.senha, [Validators.required]],
+      perfil: [user.perfil, [Validators.required]],
+      ativo: [user.ativo]
+    });
+  }
+
   voltar() {
     this.router.navigate(['/user']);
   }
 
-  toEdit(user) {
-
+  toEdit(user:User) {
+    this.editForm(user);
   }
 
   salvar(){
-
+    
   }
 
 }
