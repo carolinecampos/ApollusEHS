@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from '../_models';
+import { User } from '../../_models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -10,24 +10,24 @@ export class UserService {
     baseUrl: string = 'http://localhost:8080/usuario';
 
     getAll() {
-        return this.http.get<User[]>(`/users`);
+        return this.http.get<User[]>(this.baseUrl);
     }
 
     getById(id: number) {
-        return this.http.get(`/users/` + id);
+        return this.http.get(this.baseUrl +"/" + id);
     }
 
     register(user: User) {
         user.ativo=true;
-        user.perfil="USER";
+        user.perfil="ADMIN";
         return this.http.post(this.baseUrl, user);
     }
 
     update(user: User) {
-        return this.http.put(`/users/` + user.id, user);
+        return this.http.put(this.baseUrl, user);
     }
 
     delete(id: number) {
-        return this.http.delete(`/users/` + id);
+        return this.http.delete(this.baseUrl + "/" + id);
     }
 }

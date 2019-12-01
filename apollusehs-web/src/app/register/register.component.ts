@@ -28,7 +28,8 @@ export class RegisterComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             nome: ['', Validators.required],           
             login: ['', Validators.required],
-            senha: ['', [Validators.required, Validators.minLength(6)]]
+            senha: ['', [Validators.required, Validators.minLength(6)]],
+            confirmarSenha: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
 
@@ -36,22 +37,19 @@ export class RegisterComponent implements OnInit {
     get f() { return this.registerForm.controls; }
 
     onSubmit() {
-        console.log("chegou aqui");
         this.submitted = true;
 
         // stop here if form is invalid
-        console.log(this.registerForm.invalid);
         if (this.registerForm.invalid) {
             return;
         }
 
         this.loading = true;
-        console.log(this.registerForm.value);
         this.userService.register(this.registerForm.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.alertService.success('Registration successful', true);
+                    this.alertService.success('Cadastrado com sucesso', true);
                     this.router.navigate(['/login']);
                 },
                 error => {
