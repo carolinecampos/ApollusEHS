@@ -27,7 +27,7 @@ export class UserService {
         return this.http.put(this.baseUrl, user);
     }
 
-    delete(id: number) {
+    delete(id: number) {        
         return this.http.delete(this.baseUrl + "/" + id);
     }
 }

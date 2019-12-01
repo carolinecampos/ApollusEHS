@@ -33,8 +33,17 @@ export class UserListComponent implements OnInit {
 
   listarUsuarios() {
     this.userService.getAll().pipe(first()).subscribe(users => {
-      this.users = users;
-  });
+        this.users = users;
+    });
+  }
+
+  deleteUsuario(user) {
+    this.userService.delete(user.id).subscribe(user => {
+      alert("Apagou o usuário");
+      this.listarUsuarios();
+    }, error => {
+      alert(error);
+    });
   }
 
 
