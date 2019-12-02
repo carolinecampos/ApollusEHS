@@ -17,12 +17,17 @@ import { RegisterComponent } from './register';
 import { UserFormComponent } from './user/user-form/user-form.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { MeuPerfilComponent } from './config/meu-perfil/meu-perfil.component';
+import { ChangePasswordComponent } from './config/change-password/change-password.component';
+
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        routing
+        routing,
+        BsDropdownModule.forRoot(),
     ],
     declarations: [
         AppComponent,
@@ -31,7 +36,9 @@ import { UserListComponent } from './user/user-list/user-list.component';
         LoginComponent,
         RegisterComponent,
         UserFormComponent,
-        UserListComponent
+        UserListComponent,
+        MeuPerfilComponent,
+        ChangePasswordComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
