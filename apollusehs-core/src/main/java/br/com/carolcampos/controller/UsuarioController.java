@@ -38,6 +38,16 @@ public class UsuarioController {
 		return service.findAll();
 	}	
 	
+	@ApiOperation(value = "Buscar usuário pelo nome.")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Retorna uma lista de usuários"),
+	    @ApiResponse(code = 500, message = "Contrate o desenvolvedor para corrigir o erro"),
+	})
+	@GetMapping("/filtrar/{nome}")	
+	public List<Usuario> findByName(@PathVariable("nome") String nome) {
+		return service.findByName(nome);
+	}	
+	
 	@ApiOperation(value = "Buscar um usuário pelo seu identificador.")
 	@ApiResponses(value = {
 		    @ApiResponse(code = 200, message = "Retorna o usuário"),

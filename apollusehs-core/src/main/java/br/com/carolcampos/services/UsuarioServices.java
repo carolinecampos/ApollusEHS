@@ -23,6 +23,13 @@ public class UsuarioServices {
 		return repository.findAll();
 	}	
 	
+	public List<Usuario> findByName(String nome) {
+		if (nome == null || nome.isEmpty() || nome.isBlank()) {
+			nome = "%%";
+		}
+		return repository.findByName(nome);
+	}
+	
 	public Usuario findById(Long id) {
 		return repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado."));
