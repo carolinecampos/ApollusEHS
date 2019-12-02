@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService, AuthenticationService } from 'src/app/_services';
 import { User } from 'src/app/_models';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-password',
@@ -16,7 +17,8 @@ export class ChangePasswordComponent implements OnInit {
   currentUserSubscription: Subscription;
 
   constructor(private userService: UserService, protected formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService) { 
+    private authenticationService: AuthenticationService,
+    private router: Router) { 
       this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {            
         this.currentUser = user;
     });
@@ -37,6 +39,7 @@ export class ChangePasswordComponent implements OnInit {
     this.currentUser.senha = novaSenha
     this.userService.alterarSenha(this.currentUser).subscribe(usuario => {
       alert("Senha alterada com sucesso!");
+      this.router.navigate(['/meu-perfil']);
     }, error => {
       alert(error);
     })
