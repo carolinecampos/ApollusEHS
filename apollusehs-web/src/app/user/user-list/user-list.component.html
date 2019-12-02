@@ -1,14 +1,15 @@
-<div>
-<h3>Listar Usuários</h3>
-<div class="form-group col-md-6">  
-  <form [formGroup]="filterForm">
-      <label for="nome">Nome</label>
+<div class="card" style="width:800px;">
+<h3 class="card-header">Listar Usuários</h3>
+<div class="card-body form-inline ml-5" layout="column">  
+  <label for="nome" class="mr-sm-2">Nome</label>
+  <form [formGroup]="filterForm" class="my-3 my-lg-2">
       <input type="text" class="form-control" id="nome" formControlName="nome"> 
   </form>
-  <button (click)="pesquisar()" class="btn btn-success">Pesquisar</button>
-  <button *ngIf="isAdmin()" (click)="novoUsuario()" class="btn btn-success">Novo</button>
+  <button (click)="pesquisar()" class="btn btn-outline-success my-2 my-sm-0 ml-3">Pesquisar</button>
+  <button *ngIf="isAdmin()" (click)="novoUsuario()" class="btn btn-outline-success my-2 my-sm-0 ml-3">Novo</button>
 </div>
-<table class="table table-hover">
+
+<table class="table table-hover table-striped ml-5" style="width:700px;">
   <thead>
     <tr class="bg-primary text-light">
       <th>Usuário</th>

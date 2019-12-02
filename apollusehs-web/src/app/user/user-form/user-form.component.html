@@ -1,7 +1,7 @@
 <div>
   <div>
     <h3>Cadastrar Usuários</h3>
-    <button (click)="voltar()" class="btn btn-success">Voltar</button>
+    <button (click)="voltar()" class="btn btn-outline-success">Voltar</button>
   </div>
   <div class="card">
       <form [formGroup]="userForm">
@@ -45,7 +45,7 @@
           </div>
       </form>
   </div>
-  <button [disabled]="userForm.invalid" (click)="salvar()" class="btn btn-primary btn-lg float-right mt-3">
+  <button [disabled]="userForm.invalid" (click)="salvar()" class="btn btn-outline-success btn-lg float-right mt-3">
       Salvar
   </button>
 </div>
