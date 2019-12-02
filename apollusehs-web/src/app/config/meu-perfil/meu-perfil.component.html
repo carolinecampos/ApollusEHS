@@ -1,11 +1,13 @@
-<h3>Meu Perfil</h3>
-<div>
-    <p><strong>Nome:</strong>{{currentUser.nome}}</p>
-    <p><strong>Login:</strong>{{currentUser.login}}</p>
-    <p><strong>Perfil:</strong>{{currentUser.perfil==="ADMIN"?"Administrador":"Usuário"}}</p>
-    <p><strong>Ativo:</strong>{{currentUser.ativo?"Ativo":"Inativo"}}</p>
+<div class="card">
+<h3 class="card-header">Meu Perfil</h3>
+<div class="card-body">
+    <p><strong>Nome: </strong>{{currentUser.nome}}</p>
+    <p><strong>Login: </strong>{{currentUser.login}}</p>
+    <p><strong>Perfil: </strong>{{currentUser.perfil==="ADMIN"?"Administrador":"Usuário"}}</p>
+    <p><strong>Ativo: </strong>{{currentUser.ativo?"Ativo":"Inativo"}}</p>
 </div>
 <a routerLink="/change-password">
-<button class="btn btn-outline-info ">Alterar senha</button>
+<button class="btn btn-outline-info ml-3 mb-4">Alterar senha</button>
 </a>
+</div>
 
