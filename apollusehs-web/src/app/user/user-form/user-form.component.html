@@ -4,7 +4,7 @@
     <button (click)="voltar()" class="btn btn-success">Voltar</button>
   </div>
   <div class="card">
-      <form [formGroup]="userForm" (submit)="salvar()">
+      <form [formGroup]="userForm">
           <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-md-10">
@@ -45,7 +45,7 @@
           </div>
       </form>
   </div>
-  <button [disabled]="userForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
+  <button [disabled]="userForm.invalid" (click)="salvar()" class="btn btn-primary btn-lg float-right mt-3">
       Salvar
   </button>
 </div>

@@ -54,6 +54,11 @@ export class UserFormComponent implements OnInit {
   }
 
   salvar(){
+    this.userService.register(this.userForm.value).subscribe(user => {
+      alert("Salvou o Usuário");
+    }, error => {
+      alert(error);
+    })
     
   }
 

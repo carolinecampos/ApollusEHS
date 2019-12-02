@@ -16,7 +16,6 @@ export class UserListComponent implements OnInit {
 
   constructor(private userService: UserService, 
     private router: Router){}
-    //private userForm : UserFormComponent) { }
 
   ngOnInit() {
     this.listarUsuarios();
@@ -27,8 +26,7 @@ export class UserListComponent implements OnInit {
   }
 
   editarUsuario(user) {
-    //this.userForm.toEdit(user);
-    this.router.navigate(['/user/new']);
+    this.router.navigate(['/user/'+user.id]);
   }
 
   listarUsuarios() {

@@ -13,6 +13,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'user', component: UserListComponent },
     { path: 'user/new', component: UserFormComponent},
+    { path: 'user/:id', component: UserFormComponent},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
