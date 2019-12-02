@@ -30,4 +30,8 @@ export class UserService {
     delete(id: number) {        
         return this.http.delete(this.baseUrl + "/" + id);
     }
+
+    alterarSenha(user:User) {        
+        return this.http.put(this.baseUrl+"/alterarSenha/", user);
+    }
 }
