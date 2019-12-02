@@ -44,6 +44,7 @@ export class UserListComponent implements OnInit {
   }
 
   editarUsuario(user) {
+    this.userService.userToEdit = user;
     this.router.navigate(['/user/'+user.id]);
   }
 

@@ -12,6 +12,7 @@ import { User } from '../shared/user';
 export class UserFormComponent implements OnInit {
 
   userForm: FormGroup;
+  isEditing: boolean;
 
   constructor(private router: Router, private userService: UserService,
     protected formBuilder: FormBuilder) 
@@ -20,7 +21,13 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.createForm();
+    if (this.userService.userToEdit !== undefined) {
+      this.editForm(this.userService.userToEdit);
+      this.isEditing= true;
+    } else {
+      this.createForm();
+      this.isEditing= false;
+    }    
   }
 
   protected createForm() {
@@ -54,11 +61,19 @@ export class UserFormComponent implements OnInit {
   }
 
   salvar(){
-    this.userService.register(this.userForm.value).subscribe(user => {
-      alert("Salvou o Usuário");
-    }, error => {
-      alert(error);
-    })
+    if (this.isEditing) {
+      this.userService.update(this.userForm.value).subscribe(user => {
+        alert("Salvou o Usuário");
+      }, error => {
+        alert(error);
+      });
+    } else {
+      this.userService.register(this.userForm.value).subscribe(user => {
+        alert("Salvou o Usuário");
+      }, error => {
+        alert(error);
+      });
+    }
     
   }
 

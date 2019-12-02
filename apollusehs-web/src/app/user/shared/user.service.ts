@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from '../../_models';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+    public userToEdit: User;
     constructor(private http: HttpClient) { }
 
     baseUrl: string = 'http://localhost:8080/usuario';
@@ -38,4 +40,5 @@ export class UserService {
     alterarSenha(user:User) {        
         return this.http.put(this.baseUrl+"/alterarSenha/", user);
     }
+
 }
