@@ -1,0 +1,2 @@
+INSERT INTO usuario (ativo, login, nome, perfil, senha) VALUES (b'1', 'admin', 'admin', '1', 'admin123');
+INSERT INTO usuario (ativo, login, nome, perfil, senha) VALUES (b'1', 'user', 'user', '0', 'user123');
