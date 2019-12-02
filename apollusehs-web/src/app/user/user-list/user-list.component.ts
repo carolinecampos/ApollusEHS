@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/user';
-import { UserService } from 'src/app/_services';
+import { UserService, AuthenticationService } from 'src/app/_services';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 //import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({
@@ -13,9 +14,16 @@ import { Router } from '@angular/router';
 export class UserListComponent implements OnInit {
 
   users: User[] = [];
+  currentUser: User;
+  currentUserSubscription: Subscription;
 
   constructor(private userService: UserService, 
-    private router: Router){}
+    private router: Router,
+    private authenticationService: AuthenticationService){
+       this.authenticationService.currentUser.subscribe(user => {            
+        this.currentUser = user;
+    });
+    }
 
   ngOnInit() {
     this.listarUsuarios();
@@ -44,5 +52,8 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  isAdmin(user:User) {
+    return this.currentUser.perfil==="ADMIN"
+  }
 
 }
