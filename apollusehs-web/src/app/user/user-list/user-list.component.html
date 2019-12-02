@@ -1,6 +1,11 @@
 <div>
-<div>
-  <h3>Listar Usuários</h3>
+<h3>Listar Usuários</h3>
+<div class="form-group col-md-6">  
+  <form [formGroup]="filterForm">
+      <label for="nome">Nome</label>
+      <input type="text" class="form-control" id="nome" formControlName="nome"> 
+  </form>
+  <button (click)="pesquisar()" class="btn btn-success">Pesquisar</button>
   <button *ngIf="isAdmin()" (click)="novoUsuario()" class="btn btn-success">Novo</button>
 </div>
 <table class="table table-hover">

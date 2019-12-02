@@ -17,6 +17,10 @@ export class UserService {
         return this.http.get(this.baseUrl +"/" + id);
     }
 
+    getByName(nome: string) {
+        return this.http.get<User[]>(this.baseUrl +"/filtrar/" + nome);
+    }
+
     register(user: User) {
         user.ativo=true;
         user.perfil="ADMIN";

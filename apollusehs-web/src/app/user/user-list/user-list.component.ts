@@ -4,6 +4,7 @@ import { UserService, AuthenticationService } from 'src/app/_services';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 //import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({
@@ -16,10 +17,12 @@ export class UserListComponent implements OnInit {
   users: User[] = [];
   currentUser: User;
   currentUserSubscription: Subscription;
+  filterForm: FormGroup;
 
   constructor(private userService: UserService, 
     private router: Router,
-    private authenticationService: AuthenticationService){
+    private authenticationService: AuthenticationService,
+    protected formBuilder: FormBuilder){
        this.authenticationService.currentUser.subscribe(user => {            
         this.currentUser = user;
     });
@@ -27,6 +30,13 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.listarUsuarios();
+    this.createForm();
+  }
+
+  protected createForm() {
+    this.filterForm = this.formBuilder.group({
+      nome: [null, [Validators.minLength(3)]]
+    });
   }
 
   novoUsuario() {
@@ -40,6 +50,12 @@ export class UserListComponent implements OnInit {
   listarUsuarios() {
     this.userService.getAll().pipe(first()).subscribe(users => {
         this.users = users;
+    });
+  }
+
+  pesquisar() {
+    this.userService.getByName(this.filterForm.value['nome']).pipe(first()).subscribe(resultado => {
+        this.users = resultado;
     });
   }
 
