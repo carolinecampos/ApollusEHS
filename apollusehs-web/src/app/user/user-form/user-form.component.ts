@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/_services';
+import { UserService, AlertService } from 'src/app/_services';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../shared/user';
 
@@ -15,7 +15,7 @@ export class UserFormComponent implements OnInit {
   isEditing: boolean;
 
   constructor(private router: Router, private userService: UserService,
-    protected formBuilder: FormBuilder) 
+    protected formBuilder: FormBuilder, private alertService: AlertService) 
   { 
 
   }
@@ -60,21 +60,28 @@ export class UserFormComponent implements OnInit {
     this.editForm(user);
   }
 
+  limpar() {
+    let usuario = new User();
+    usuario.ativo=true;
+    usuario.perfil="ADMIN";
+    this.editForm(usuario);
+  }
+
   salvar(){
     if (this.isEditing) {
-      this.userService.update(this.userForm.value).subscribe(user => {
-        alert("Salvou o Usuário");
+      this.userService.update(this.userForm.value).subscribe(user => {          
+        this.alertService.success('Cadastrado com sucesso', false);     
       }, error => {
-        alert(error);
+        this.alertService.error(error, true);
       });
     } else {
       this.userService.register(this.userForm.value).subscribe(user => {
-        alert("Salvou o Usuário");
+        this.alertService.success('Cadastrado com sucesso', false);     
+        this.limpar();    
       }, error => {
-        alert(error);
+        this.alertService.error(error, true);
       });
-    }
-    
+    }    
   }
 
 }
