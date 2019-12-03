@@ -35,7 +35,7 @@ export class UserListComponent implements OnInit {
 
   protected createForm() {
     this.filterForm = this.formBuilder.group({
-      nome: [null, [Validators.minLength(3)]]
+      nome: [""]
     });
   }
 
@@ -55,9 +55,14 @@ export class UserListComponent implements OnInit {
   }
 
   pesquisar() {
+    let nome = this.filterForm.value['nome'];
+    if (nome === "" || nome === null || nome === undefined) {
+      this.listarUsuarios();
+    } else {
     this.userService.getByName(this.filterForm.value['nome']).pipe(first()).subscribe(resultado => {
         this.users = resultado;
     });
+    }
   }
 
   deleteUsuario(user) {
